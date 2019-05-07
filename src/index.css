@@ -6,9 +6,101 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f4f4f4;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+header {
+  background-color: #fbcc33;
+  height: 50px;
+}
+
+.logo {
+  margin-left: 50px;
+  margin-top: 5px;
+  height: 40px;
+}
+
+ul {
+  list-style: none;
+  font-weight: 800;
+  font-size: 25px;
+  display: flex;
+  justify-content: space-around;
+}
+
+li:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+i {
+  margin: 10px;
+  color: #fbcc33;
+}
+
+i:hover {
+  cursor: pointer;
+}
+
+.current {
+  text-decoration: underline;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+}
+
+.loading {
+  width: 700px;
+  margin: auto;
+}
+
+.container {
+  width: 1024px;
+  margin: auto;
+}
+
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.movie-card {
+  height: 250px;
+  width: 450px;
+  background-color: #ffffff;
+  margin: 10px;
+  display: flex;
+  box-shadow: 0px 3px 6px grey;
+}
+
+.movie-img-container {
+  height: 250px;
+}
+
+.movie-img {
+  height: 100%;
+}
+
+.movie-info {
+  padding: 10px;
+  font-size: 15px;
+  overflow: auto;
+}
+
+.movie-title {
+  font-weight: bold;
+}
+
+.movie-overview {
+  padding-top: 10px;
+  overflow: auto;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    width: auto;
+  }
 }
