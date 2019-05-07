@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import loading from "../img/loading.gif";
+import MovieCard from "./MovieCards";
 
 class Popular extends React.Component {
   state = {
@@ -10,18 +11,7 @@ class Popular extends React.Component {
 
   renderMovies = () => {
     let movies = this.state.data.map(movie => (
-      <div className="movie-card">
-        <img
-          src={movie.img}
-          className="movie-img"
-          alt={movie.title + " poster"}
-        />
-        <div className="movie-info">
-          <div className="movie-title">{movie.title}</div>
-          <div>{movie.date}</div>
-          <div className="movie-overview">{movie.overview}</div>
-        </div>
-      </div>
+      <MovieCard key={movie.id} movie={movie} />
     ));
     return movies;
   };
@@ -55,7 +45,7 @@ class Popular extends React.Component {
           return {
             title: movie.title,
             date: movie.release_date,
-            img:
+            poster_path:
               " https://image.tmdb.org/t/p/w370_and_h556_bestv2" +
               movie.poster_path,
             overview: movie.overview
