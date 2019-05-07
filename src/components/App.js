@@ -45,6 +45,14 @@ class App extends React.Component {
     }
   };
 
+  onTabClick = tab => {
+    this.setState({
+      currentTab: tab,
+      index: this.state.index + 1,
+      page: 1
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -54,11 +62,7 @@ class App extends React.Component {
             <li
               className={this.state.currentTab === "Popular" ? "current" : ""}
               onClick={() => {
-                this.setState({
-                  currentTab: "Popular",
-                  index: this.state.index + 1,
-                  page: 1
-                });
+                this.onTabClick("Popular");
               }}
             >
               Popular Movies
@@ -66,11 +70,7 @@ class App extends React.Component {
             <li
               className={this.state.currentTab === "Upcoming" ? "current" : ""}
               onClick={() => {
-                this.setState({
-                  currentTab: "Upcoming",
-                  index: this.state.index + 1,
-                  page: 1
-                });
+                this.onTabClick("Upcoming");
               }}
             >
               Upcoming Movies
@@ -78,11 +78,7 @@ class App extends React.Component {
             <li
               className={this.state.currentTab === "Top" ? "current" : ""}
               onClick={() => {
-                this.setState({
-                  currentTab: "Top",
-                  index: this.state.index + 1,
-                  page: 1
-                });
+                this.onTabClick("Top");
               }}
             >
               Top Rated Movies
