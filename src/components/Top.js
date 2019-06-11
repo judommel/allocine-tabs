@@ -6,7 +6,8 @@ import MovieCard from "./MovieCards";
 class Top extends React.Component {
   state = {
     isLoading: true,
-    data: []
+    data: [],
+    totalPages: null
   };
 
   renderMovies = () => {
@@ -54,8 +55,10 @@ class Top extends React.Component {
 
         this.setState({
           data: moviedatas,
-          isLoading: false
+          isLoading: false,
+          totalPages: response.data.total_pages
         });
+        this.props.totalPages(this.state.totalPages);
       });
   }
 }

@@ -3,45 +3,90 @@ import Upcoming from "./Upcoming";
 import Popular from "./Popular";
 import Top from "./Top";
 import Header from "./Header";
+import Welcome from "./Welcome";
 
 class App extends React.Component {
   state = {
-    currentTab: "",
+    currentTab: "Welcome",
     page: 1,
-    index: 0
+    index: 0,
+    totalPages: null
   };
 
   nextPage = () => {
-    if (this.state.currentTab !== "") {
+    if (this.state.currentTab !== "Welcome") {
       return (
-        <i
-          className="fas fa-arrow-right fa-3x"
-          onClick={() => {
-            this.setState({
-              page: this.state.page + 1,
-              index: this.state.index + 1
-            });
+        <div className="next-page">
+          <span className="page-count">
+            Page {this.state.page} sur {this.state.totalPages}
+          </span>
+          <i
+            className="fas fa-arrow-right fa-2x"
+            onClick={() => {
+              this.setState({
+                page: this.state.page + 1,
+                index: this.state.index + 1
+              });
 
-            if (this.state.currentTab === "Popular") {
-              return <Popular key={this.state.index} page={this.state.page} />;
-            } else if (this.state.currentTab === "Upcoming") {
-              return <Upcoming key={this.state.index} page={this.state.page} />;
-            } else if (this.state.currentTab === "Top") {
-              return <Top key={this.state.index} page={this.state.page} />;
-            }
-          }}
-        />
+              if (this.state.currentTab === "Popular") {
+                return (
+                  <Popular
+                    key={this.state.index}
+                    page={this.state.page}
+                    totalPages={total => this.setState({ totalPages: total })}
+                  />
+                );
+              } else if (this.state.currentTab === "Upcoming") {
+                return (
+                  <Upcoming
+                    key={this.state.index}
+                    page={this.state.page}
+                    totalPages={total => this.setState({ totalPages: total })}
+                  />
+                );
+              } else if (this.state.currentTab === "Top") {
+                return (
+                  <Top
+                    key={this.state.index}
+                    page={this.state.page}
+                    totalPages={total => this.setState({ totalPages: total })}
+                  />
+                );
+              }
+            }}
+          />
+        </div>
       );
     }
   };
 
   toRender = () => {
-    if (this.state.currentTab === "Popular") {
-      return <Popular key={this.state.index} page={this.state.page} />;
+    if (this.state.currentTab === "Welcome") {
+      return <Welcome onSelectCategory={e => this.onTabClick(e)} />;
+    } else if (this.state.currentTab === "Popular") {
+      return (
+        <Popular
+          key={this.state.index}
+          page={this.state.page}
+          totalPages={total => this.setState({ totalPages: total })}
+        />
+      );
     } else if (this.state.currentTab === "Upcoming") {
-      return <Upcoming key={this.state.index} page={this.state.page} />;
+      return (
+        <Upcoming
+          key={this.state.index}
+          page={this.state.page}
+          totalPages={total => this.setState({ totalPages: total })}
+        />
+      );
     } else if (this.state.currentTab === "Top") {
-      return <Top key={this.state.index} page={this.state.page} />;
+      return (
+        <Top
+          key={this.state.index}
+          page={this.state.page}
+          totalPages={total => this.setState({ totalPages: total })}
+        />
+      );
     }
   };
 
@@ -56,7 +101,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header onTabClick={() => this.onTabClick("Welcome")} />
         <div className="container">
           <ul>
             <li
